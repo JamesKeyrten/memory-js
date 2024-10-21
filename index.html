@@ -4,10 +4,60 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
-    <title>Mon projet</title>
+    <script src="/050-projet/img/"></script>
+    <title>Acceuil Mémory Dino</title>
   </head>
   <body>
-    <h1>Mon projet</h1>
-    <script type="module" src="app.js"></script>
+    <main>
+      <header><h1>Jouer à Memory</h1></header>
+      <div>
+        <nav>
+          <ul>
+            <a id="acceuil" href="./index.html">Acceuil</a>
+            <a id="inscrire" href="./submit.html">S'inscrire</a>
+            <a id="connecter" href="">Se connecter</a>
+            <a id="profil" href="">Profil</a>
+            <a id="jouer" href="./jouer.html">Jouer</a>
+          </ul>
+        </nav>
+      </div>
+      <section>
+        <div>
+          <h2>Bienvenue sur le site du Memory de l'ENI</h2>
+          <p><strong>Règles du jeu :</strong></p>
+          <ul>
+            <li>
+              Retournez deux carte. Si les images sont identiques, le jeu laisse
+              les cartes visible.
+            </li>
+            <li>
+              Si les images sont différentes, les cartes se retournent faces
+              cachés là où elles étaient.
+            </li>
+            <li>
+              La partie est terminée lorsque toutes les cartes ont été
+              assemblées par paires.
+            </li>
+          </ul>
+        </div>
+        <div>
+          <img
+            src="/050-projet/img acceuil/memory_detail_dinosaures.png"
+            alt=""
+          />
+        </div>
+        <div>
+          <p>
+            Si vous vous voulez vous souvenir de votre score, inscrivez-vous via
+            le formulaire.
+          </p>
+          <p>Le jeu garde les 5 meilleurs scores.</p>
+          <p>
+            Si vous voulez relancer une partie cliquez sur la barre d'espace.
+          </p>
+        </div>
+      </section>
+      <script type="module" src="app.js"></script>
+    </main>
   </body>
 </html>

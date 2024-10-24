@@ -22,6 +22,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+<<<<<<< HEAD
 }
 
 .card {
@@ -52,6 +53,44 @@ body {
 .back {
   transform: rotateY(180deg);
   background-color: #6589F9;
+=======
+}
+
+.match {
+  border: 4px solid red;
+  background-image: none !important;
+}
+
+.card { 
+  position: relative;
+  transition: all 0.4s linear;
+  transform-style: preserve-3d;
+  margin: 5px;
+}
+
+.card,
+.back,
+.front {
+  height: 150px;
+  width: 150px;
+}
+
+.back,
+.front {
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.front {
+  background: #242422 url('../img/Capture.PNG') no-repeat center center /
+    contain;
+}
+
+
+.back {
+  transform: rotateY(180deg);
+  background-color: white;
+>>>>>>> 901cc3e1ebedbd0f8abcefad339ea5c18d5c2219
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
@@ -60,3 +99,10 @@ body {
 .selected {
   transform: rotateY(180deg);
 }
+<<<<<<< HEAD
+=======
+
+.match .front {
+  background: white !important;
+}
+>>>>>>> 901cc3e1ebedbd0f8abcefad339ea5c18d5c2219

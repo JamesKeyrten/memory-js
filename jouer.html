@@ -1,37 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/grid.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <title>Memory board</title>
-  </head>
-  <body>
-    <main>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/grid.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <title>Memory board</title>
+</head>
+
+<body>
+  <main>
+    <section>
       <div>
         <nav>
           <ul>
-            <li><a id="acceuil" href="./index.html">Acceuil</a></li>
-            <li><a id="inscrire" href="./submit.html">S'inscrire</a></li>
-            <li><a id="connecter" href="./connect.html">Se connecter</a></li>
-            <li><a id="profil" href="./profil.html">Profil</a></li>
-            <li><a id="jouer" href="./jouer.html">Jouer</a></li>
+            <a id="acceuil" href="./index.html">Acceuil</a>
+            <a id="inscrire" href="./submit.html">S'inscrire</a>
+            <a id="connecter" href="./connect.html">Se connecter</a>
+            <a id="profil" href="./profil.html">Profil</a>
+            <a id="jouer" href="./jouer.html">Jouer</a>
           </ul>
         </nav>
-      </div>
-      <div>
-        <label for="select-size">Choisis la taille de la grille :</label>
-        <select name="grid-size" id="select-size">
-          <option value="size1">4x3</option>
-          <option value="size2">4x4</option>
-          <option value="size3">5x4</option>
-        </select>
-      </div>
-      <div id="game"></div>
-    </main>
 
-    <!-- Déplacement du script vers la fin du body -->
-    <script src="./app.js"></script>
-  </body>
+      </div>
+    </section>
+    <div>
+      <label for="select-size">Choisis la taille de la grille :</label>
+      <select name="grid-size" id="select-size">
+        <option value="size1">4x3</option>
+        <option value="size2">4x4</option>
+        <option value="size3">5x4</option>
+      </select>
+    </div>
+    <div id="game"></div>
+  </main>
+  <script type="module" src="./app.js"></script>
+</body>
+
 </html>

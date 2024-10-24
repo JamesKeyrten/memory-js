@@ -1,4 +1,3 @@
-// définir un tableau d'image valeur avec une clé name
 const cardsArray = [
   { name: "dino1", img: "img/1.jpg" },
   { name: "dino2", img: "img/2.jpg" },
@@ -12,85 +11,92 @@ const cardsArray = [
   { name: "dino10", img: "img/10.jpg" },
 ];
 
-const game = document.getElementById("game");
-const grid = document.createElement("section");
-// définir deux variables pour  stocker les 2 guess
+let gameGrid = cardsArray.concat(cardsArray);
+gameGrid.sort(() => 0.5 - Math.random());
+
 let firstGuess = "";
 let secondGuess = "";
-//variable d'incrémentation du if pour seléctionner pas plus de 2 img
 let count = 0;
+let previousTarget = null;
+let delay = 1200;
 
-function shuffle(array) {
-  array.sort(() => Math.random() - 0.5);
-}
-shuffle(cardsArray);
+const game = document.getElementById("game");
+const grid = document.createElement("section");
+grid.setAttribute("class", "grid");
+game.appendChild(grid);
 
-// inititialiser les cartes invisible pour l'utilisateur
 function init() {
-  // Ciblage
-  grid.setAttribute("class", "grid");
-  game.appendChild(grid);
-
-  //itérer dans le tableau pour récup tout les dinos
-  let gameGrid = cardsArray.concat(cardsArray);
   gameGrid.forEach((dino) => {
-    //créer une div dans le DOM
+    const { name, img } = dino;
     const card = document.createElement("div");
-    // mettre une card dans une div
     card.classList.add("card");
-    // associer l'attribu data-name à la div imagePaths
     card.dataset.name = dino.name;
-    // bg img sur la div
-    card.style.backgroundImage = `url(${dino.img})`;
-    // ajouter la div avec le bg sur la grille
+
+    const front = document.createElement("div");
+    front.classList.add("front");
+    card.dataset.name = name;
+
+    const back = document.createElement("div");
+    back.classList.add("back");
+    back.style.backgroundImage = `url(${img})`;
+
     grid.appendChild(card);
+    card.appendChild(front);
+    card.appendChild(back);
+  });
+}
+  init();
+function match() {
+  let selected = document.querySelectorAll(".selected");
+  selected.forEach((card) => {
+    card.classList.add("match");
+
   });
 }
 
-init();
+const resetGuesses = () => {
+  firstGuess = "";
+  secondGuess = "";
+  count = 0;
+  previousTarget = null;
 
-function clicked() {
-  grid.addEventListener("click", function (event) {
-    // cibler l'évènement clicked et on le stock dans une variable
-    let clicked = event.target;
-
-    // Si clicked est une <section>, alors clicked.nodeName vaudra 'SECTION'
-    if (clicked.nodeName === "SECTION") {
-      return;
-    }
-    //compteur pour seléctionner 2 éléments(pas plus)
-    if (count < 2) {
-      count++;
-      if (count === 1) {
-      // Assign first guess
-      firstGuess = clicked.dataset.name
-      clicked.classList.add('selected')
-    } else {
-      // Assign second guess
-      secondGuess = clicked.dataset.name
-      clicked.classList.add('selected')
-    }
-    // If both guesses are not empty...
-    if (firstGuess !== '' && secondGuess !== '') {
-      // and the first guess matches the second match...
-      if (firstGuess === secondGuess) {
-        // run the match function
-        match()
-      }
-    }
-  }
-})
-      // ajoute la class selected et applique le css correspondant
-      clicked.classList.add("selected");
-    }
-
-
-clicked();
-
-// Add match CSS
-const match = () => {
-  let selected = document.querySelectorAll('.selected')
+  let selected = document.querySelectorAll(".selected");
   selected.forEach((card) => {
-    card.classList.add('match')
-  })
-}
+   if (!card.classList.contains('match')) {
+     card.classList.remove("selected");
+   }
+
+  });
+};
+
+grid.addEventListener("click", function (event) {
+  let clicked = event.target;
+  if (
+    clicked.nodeName === "SECTION" ||
+    clicked === previousTarget ||
+    clicked.parentNode.classList.contains("selected") ||
+    clicked.parentNode.classList.contains("match")
+  ) {
+    return;
+  }
+
+  if (count < 2) {
+    count++;
+  }
+  if (count === 1) {
+    firstGuess = clicked.parentNode.dataset.name;
+    console.log(firstGuess);
+    clicked.parentNode.classList.add("selected");
+  } else {
+    secondGuess = clicked.parentNode.dataset.name;
+    console.log(secondGuess);
+    clicked.parentNode.classList.add("selected");
+  }
+  if (firstGuess && secondGuess) {
+    if (firstGuess === secondGuess) {
+      setTimeout(match, delay);
+    }
+    setTimeout(resetGuesses, delay);
+  }
+  previousTarget = clicked;
+});
